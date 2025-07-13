@@ -145,7 +145,8 @@ const bookingsRoutes = require("./routes/bookings");
 const userRoutes = require("./routes/userRoutes"); // Added userRoutes
 
 // Database URL and connection
-const dbUrl = process.env.DB_URL;
+// const dbUrl = process.env.DB_URL;
+const dburl = process.env.ATLASDB_URL;
 
 main()
     .then(() => {
@@ -156,12 +157,12 @@ main()
     });
 
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(dburl);
 }
 
 // Set up express-session and connect-flash for flash messages
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
+    mongoUrl: dburl,
     crypto: {
         secret: process.env.SECRET,
     },

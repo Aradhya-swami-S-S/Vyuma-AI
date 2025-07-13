@@ -1,8 +1,12 @@
+require("dotenv").config({ path: "../.env" });
+
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/vyumademo";
+const password = process.env.MONGO_PASSWORD;
+
+const MONGO_URL = `mongodb+srv://vyuma:${password}@vyuma.pg3v4lg.mongodb.net/vyumademo?retryWrites=true&w=majority&appName=vyuma`;
 
 main()
   .then(() => {

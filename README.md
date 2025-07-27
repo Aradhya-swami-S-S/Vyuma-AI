@@ -13,8 +13,7 @@ Vyuma-AI is a full-stack web application designed for resort listing, booking, a
 * **Frontend:** HTML, CSS, JavaScript (Vanilla), EJS Templates
 * **Backend:** Node.js, Express.js
 * **Database:** MongoDB Atlas
-* **Authentication:** Passport.js (Local strategy)
-* **Cloud Storage:** Cloudinary
+
 
 ---
 

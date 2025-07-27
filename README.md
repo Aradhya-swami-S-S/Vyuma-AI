@@ -127,14 +127,4 @@ No formal tests implemented. Manual test by simulating various user flows (sign 
 * [ ] Admin panel for managing users and listings
 * [ ] Stripe integration for payments
 
----
 
-## 🤝 Contributing
-
-Feel free to fork the repo and submit a pull request.
-
----
-
-## 📄 License
-
-Licensed under the MIT License. See `LICENSE` for more info.

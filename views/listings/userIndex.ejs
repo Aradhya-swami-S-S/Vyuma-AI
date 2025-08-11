@@ -157,32 +157,77 @@
 
 
     </div>
-
-
-    <script>
-        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+<script>
+    // Tax toggle
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    if (taxSwitch) {
         taxSwitch.addEventListener("click", () => {
             let taxInfo = document.getElementsByClassName("tax-info");
-            for (info of taxInfo) {
-                if (info.style.display != "inline") {
-                    info.style.display = "inline";
-                } else {
-                    info.style.display = "none";
-                }
+            for (let info of taxInfo) {
+                info.style.display = (info.style.display !== "inline") ? "inline" : "none";
             }
         });
+    }
 
-        function openModal(id, name, price) {
-            document.getElementById('resortId').value = id;
-            document.getElementById('resortName').value = name;
-            document.getElementById('resortPrice').value = price;
-            document.getElementById('bookingModal').style.display = 'block';
+    // Open booking modal
+    function openModal(id, name, price) {
+        document.getElementById('resortId').value = id;
+        document.getElementById('resortName').value = name;
+        document.getElementById('resortPrice').value = price;
+        document.getElementById('bookingModal').style.display = 'block';
+
+        // Set today's date as minimum for check-in
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkIn').setAttribute('min', today);
+    }
+
+    // Close booking modal
+    function closeModal() {
+        document.getElementById('bookingModal').style.display = 'none';
+    }
+
+    // Booking form validation
+    document.addEventListener('DOMContentLoaded', function () {
+        const bookingForm = document.querySelector('#bookingModal form');
+
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function (e) {
+                const rooms = parseInt(document.getElementById('rooms').value, 10);
+                const checkIn = new Date(document.getElementById('checkIn').value);
+                const checkOut = new Date(document.getElementById('checkOut').value);
+
+                // 1. Rooms validation
+                if (rooms < 1 || rooms > 5) {
+                    alert('You can book a minimum of 1 and a maximum of 5 rooms.');
+                    e.preventDefault();
+                    return;
+                }
+
+                // 2. Check-in date validation
+                const todayDate = new Date();
+                todayDate.setHours(0, 0, 0, 0);
+                if (checkIn < todayDate) {
+                    alert('Check-in date cannot be in the past.');
+                    e.preventDefault();
+                    return;
+                }
+
+                // 3. Check-out date validation
+                const diffTime = checkOut - checkIn;
+                const diffDays = diffTime / (1000 * 60 * 60 * 24);
+                if (diffDays < 1) {
+                    alert('Check-out date must be after check-in date.');
+                    e.preventDefault();
+                    return;
+                }
+                if (diffDays > 3) {
+                    alert('You can book for a maximum of 3 days.');
+                    e.preventDefault();
+                    return;
+                }
+            });
         }
-
-        function closeModal() {
-            document.getElementById('bookingModal').style.display = 'none';
-        }
+    });
+</script>
 
 
-
-    </script>

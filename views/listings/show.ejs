@@ -16,7 +16,7 @@
                     <p class="card-text"><%= listing.description %></p>
                     <p class="card-text">
                         <% if (listing.price !== null && listing.price !== undefined) { %>
-                            <strong>&#8377 <%= listing.price.toLocaleString("en-IN") %></strong>
+                            <strong>₹ <%= listing.price.toLocaleString("en-IN") %></strong>
                         <% } else { %>
                             Price not available
                         <% } %>
